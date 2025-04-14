@@ -20,11 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 230, 229, 229),
+        title: Text('My To-Do List'),
+        centerTitle: true,
       ),
       body: Container(
+        height: double.infinity,
         child: Column(
-          children: [],
+          children: [
+            Text('List Of Task'),
+          ],
         ),
       ),
     );
