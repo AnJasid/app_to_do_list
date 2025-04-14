@@ -1,6 +1,8 @@
 import 'package:app_to_do_list/models/todo_task.dart';
 import 'package:flutter/material.dart';
 
+import '../ widgets/ todo_list.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -23,12 +25,17 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('My To-Do List'),
         centerTitle: true,
       ),
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
-        child: Column(
-          children: [
-            Text('List Of Task'),
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              Text('List Of Task'),
+              Expanded(
+                child: ToDoList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
