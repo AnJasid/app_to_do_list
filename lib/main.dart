@@ -1,5 +1,5 @@
-import 'package:app_to_do_list/screens/todo_list_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:app_to_do_list/screens/login_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
