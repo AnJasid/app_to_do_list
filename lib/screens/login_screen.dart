@@ -43,6 +43,16 @@ class LoginScreen extends StatelessWidget {
                   topRight: Radius.circular(30.0),
                 ),
               ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    TextFormField(),
+                    TextFormField(),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
