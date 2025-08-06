@@ -44,12 +44,26 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.0,
+                  vertical: 50.0,
+                ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    TextFormField(),
-                    TextFormField(),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Your Email',
+                        hintText: 'example@email.com',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
                   ],
                 ),
               ),
