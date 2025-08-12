@@ -43,29 +43,45 @@ class LoginScreen extends StatelessWidget {
                   topRight: Radius.circular(30.0),
                 ),
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 25.0,
-                  vertical: 50.0,
-                ),
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Your Email',
                         hintText: 'example@email.com',
                         border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.email_outlined),
+                        filled: true,
+                        fillColor: Colors.grey[200],
                       ),
                     ),
-                    SizedBox(height: 20.0),
-                    TextFormField(
+                  ),
+                  SizedBox(height: 30.0),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Password',
                         border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.lock_outline),
+                        filled: true,
+                        fillColor: Colors.grey[200],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Text(
+                      'forget password',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
