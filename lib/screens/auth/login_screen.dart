@@ -94,6 +94,9 @@ class LoginScreen extends StatelessWidget {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue[800],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
                         ),
                         onPressed: () {},
                         child: Text(
@@ -105,6 +108,21 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(height: 70),
+                  Center(
+                      child: RichText(
+                    text: TextSpan(
+                        style: TextStyle(color: Colors.black),
+                        children: <TextSpan>[
+                          TextSpan(text: "Don't Have An Account? "),
+                          TextSpan(
+                            text: 'Sign Up Now',
+                            style: TextStyle(
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ]),
+                  )),
                 ],
               ),
             ),
