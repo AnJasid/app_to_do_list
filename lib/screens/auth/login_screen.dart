@@ -1,7 +1,15 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:app_to_do_list/screens/auth/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+
+  void _goToSignUpScreen(context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (ctx) => SignupScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +118,8 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 70),
                   Center(
-                      child: RichText(
-                    text: TextSpan(
+                    child: RichText(
+                      text: TextSpan(
                         style: TextStyle(color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(text: "Don't Have An Account? "),
@@ -120,9 +128,13 @@ class LoginScreen extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.blue,
                             ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => _goToSignUpScreen(context),
                           ),
-                        ]),
-                  )),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
