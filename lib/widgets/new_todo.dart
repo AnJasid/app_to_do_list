@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_to_do_list/models/todo.dart';
 
@@ -16,7 +19,48 @@ class NewTodo extends StatefulWidget {
 class _NewTodoState extends State<NewTodo> {
   final _titleController = TextEditingController();
 
+  void _showDialog() {
+    if (Platform.isIOS) {
+      showCupertinoDialog(
+        context: context,
+        builder: (ctx) => CupertinoAlertDialog(
+          title: const Text('Invalid Input'),
+          content: const Text('Please make sure a valid title was entered.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: Text('Okay'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Invalid Input'),
+          content: Text('Please make sure a valid title was entered.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: Text('Okay'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   void _submitTodoData() {
+    if (_titleController.text.trim().isEmpty) {
+      _showDialog();
+      return;
+    }
+
     widget.onAddTodo(
       Todo(title: _titleController.text),
     );
