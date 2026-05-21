@@ -62,7 +62,10 @@ class _NewTodoState extends State<NewTodo> {
     }
 
     widget.onAddTodo(
-      Todo(title: _titleController.text),
+      Todo(
+        id: DateTime.now().microsecondsSinceEpoch.toString(),
+        title: _titleController.text,
+      ),
     );
     Navigator.pop(context);
   }
