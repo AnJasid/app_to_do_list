@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app_to_do_list/models/todo.dart';
+import 'package:app_to_do_list/todo_data/todo_item.dart';
 
 class TodoList extends StatelessWidget {
   const TodoList({super.key, required this.todos});
@@ -11,8 +12,8 @@ class TodoList extends StatelessWidget {
     return ListView.builder(
       itemCount: todos.length,
       itemBuilder: (BuildContext context, index) => Card(
-        child: ListTile(
-          title: Text(todos[index].title),
+        child: TodoItem(
+          todos: todos[index],
         ),
       ),
     );
