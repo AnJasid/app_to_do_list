@@ -11,11 +11,8 @@ class TodoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: todos.length,
-      itemBuilder: (BuildContext context, index) => Card(
-        child: TodoItem(
-          todos: todos[index],
-        ),
-      ),
+      itemBuilder: (BuildContext context, index) =>
+          TodoItem(todos: todos[index]),
     );
   }
 }
