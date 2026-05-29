@@ -16,13 +16,22 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
   void _openAddTodoOverlay() {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => NewTodo(onAddTodo: _addTodo),
+      builder: (ctx) => NewTodo(
+        onAddTodo: _addTodo,
+        onDeleteTodo: _deleteTodo,
+      ),
     );
   }
 
   void _addTodo(Todo todo) {
     setState(() {
       _registeredTodos.add(todo);
+    });
+  }
+
+  void _deleteTodo(int index) {
+    setState(() {
+      _registeredTodos.removeAt(index);
     });
   }
 
@@ -35,6 +44,7 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
       body: Center(
         child: TodoList(
           todos: _registeredTodos,
+          onDeleteTodo: _deleteTodo,
         ),
       ),
       floatingActionButton: FloatingActionButton(

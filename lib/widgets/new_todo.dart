@@ -8,9 +8,11 @@ class NewTodo extends StatefulWidget {
   const NewTodo({
     super.key,
     required this.onAddTodo,
+    required this.onDeleteTodo,
   });
 
   final void Function(Todo todo) onAddTodo;
+  final void Function(int index) onDeleteTodo;
 
   @override
   State<NewTodo> createState() => _NewTodoState();
