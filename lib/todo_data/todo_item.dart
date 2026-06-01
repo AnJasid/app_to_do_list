@@ -5,13 +5,15 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class TodoItem extends StatefulWidget {
   final Todo todos;
   final Function(int index) onDeleteTodo;
+  final Function(int index) onEditTodo;
   final int index;
 
   const TodoItem({
     super.key,
     required this.todos,
-    required this.onDeleteTodo,
     required this.index,
+    required this.onDeleteTodo,
+    required this.onEditTodo,
   });
 
   @override
@@ -25,14 +27,16 @@ class _TodoItemState extends State<TodoItem> {
       endActionPane: ActionPane(
         motion: ScrollMotion(),
         children: [
+          // Delete Button
           SlidableAction(
             onPressed: (context) => widget.onDeleteTodo(widget.index),
             backgroundColor: Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
           ),
+          // Edit Button
           SlidableAction(
-            onPressed: (context) => {},
+            onPressed: (context) => widget.onEditTodo(widget.index),
             backgroundColor: Colors.blue,
             foregroundColor: Colors.white,
             icon: Icons.edit,

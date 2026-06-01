@@ -7,10 +7,12 @@ class TodoList extends StatelessWidget {
     super.key,
     required this.todos,
     required this.onDeleteTodo,
+    required this.onEditTodo,
   });
 
   final List<Todo> todos;
   final Function(int index) onDeleteTodo;
+  final Function(int index) onEditTodo;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class TodoList extends StatelessWidget {
         todos: todos[index],
         index: index,
         onDeleteTodo: onDeleteTodo,
+        onEditTodo: onEditTodo,
       ),
     );
   }

@@ -11,28 +11,37 @@ class TodoHomeScreen extends StatefulWidget {
 }
 
 class _TodoHomeScreenState extends State<TodoHomeScreen> {
-  final List<Todo> _registeredTodos = [];
+  final List<Todo> _registeredTodos = []; // List of Todos
 
   void _openAddTodoOverlay() {
     showModalBottomSheet(
       context: context,
       builder: (ctx) => NewTodo(
         onAddTodo: _addTodo,
-        onDeleteTodo: _deleteTodo,
       ),
     );
   }
 
+  // Add Todo
   void _addTodo(Todo todo) {
     setState(() {
       _registeredTodos.add(todo);
     });
   }
 
+  // Delete Todo
   void _deleteTodo(int index) {
     setState(() {
       _registeredTodos.removeAt(index);
     });
+  }
+
+  // Update Todo
+  void _openEditTodoOverlay(int index) {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => NewTodo(onAddTodo: _addTodo),
+    );
   }
 
   @override
@@ -44,6 +53,7 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
       body: Center(
         child: TodoList(
           todos: _registeredTodos,
+          onEditTodo: _openEditTodoOverlay,
           onDeleteTodo: _deleteTodo,
         ),
       ),
