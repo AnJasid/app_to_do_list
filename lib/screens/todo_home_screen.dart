@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app_to_do_list/widgets/new_todo.dart';
+import 'package:app_to_do_list/widgets/todo_form.dart';
 import 'package:app_to_do_list/models/todo.dart';
 import 'package:app_to_do_list/todo_data/todo_list.dart';
 
@@ -16,8 +16,10 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
   void _openAddTodoOverlay() {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => NewTodo(
+      builder: (ctx) => TodoForm(
         onAddTodo: _addTodo,
+        onUpdateTodo: _updateTodo,
+        
       ),
     );
   }
@@ -40,8 +42,18 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
   void _openEditTodoOverlay(int index) {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => NewTodo(onAddTodo: _addTodo),
+      builder: (ctx) => TodoForm(
+        todo: _registeredTodos[index],
+        onAddTodo: _addTodo,
+        onUpdateTodo: _updateTodo,
+      ),
     );
+  }
+
+  void _updateTodo(Todo todo, String newTitle) {
+    setState(() {
+      todo.title = newTitle;
+    });
   }
 
   @override

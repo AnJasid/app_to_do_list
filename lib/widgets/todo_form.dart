@@ -4,20 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_to_do_list/models/todo.dart';
 
-class NewTodo extends StatefulWidget {
-  const NewTodo({
+class TodoForm extends StatefulWidget {
+  const TodoForm({
     super.key,
+    this.todo,
     required this.onAddTodo,
-    
+    required this.onUpdateTodo,
   });
 
+  final Todo? todo;
   final void Function(Todo todo) onAddTodo;
-  
+  final Function(Todo oldTodo, String updatedTitle) onUpdateTodo;
+
   @override
-  State<NewTodo> createState() => _NewTodoState();
+  State<TodoForm> createState() => _TodoFormState();
 }
 
-class _NewTodoState extends State<NewTodo> {
+class _TodoFormState extends State<TodoForm> {
   final _titleController = TextEditingController();
 
   void _showDialog() {
@@ -62,13 +65,29 @@ class _NewTodoState extends State<NewTodo> {
       return;
     }
 
-    widget.onAddTodo(
-      Todo(
-        id: DateTime.now().microsecondsSinceEpoch.toString(),
-        title: _titleController.text,
-      ),
-    );
+    if (widget.todo == null) {
+      widget.onAddTodo(
+        Todo(
+          id: DateTime.now().microsecondsSinceEpoch.toString(),
+          title: _titleController.text,
+        ),
+      );
+    } else {
+      widget.onUpdateTodo(
+        widget.todo!,
+        _titleController.text,
+      );
+    }
     Navigator.pop(context);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.todo != null) {
+      _titleController.text = widget.todo!.title;
+    }
   }
 
   @override
@@ -106,7 +125,7 @@ class _NewTodoState extends State<NewTodo> {
               ),
               ElevatedButton(
                 onPressed: _submitTodoData,
-                child: Text('Save Todo'),
+                child: Text(widget.todo == null ? 'Add Todo' : 'Save Todo'),
               ),
             ],
           ),
