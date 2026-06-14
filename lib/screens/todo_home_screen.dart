@@ -39,6 +39,7 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
     setState(() {
       _registeredTodos.removeAt(index);
     });
+    _saveTodos();
   }
 
   // Update Todo
@@ -57,8 +58,10 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
     setState(() {
       todo.title = newTitle;
     });
+    _saveTodos();
   }
 
+  // LOAD todos when app starts
   Future<void> _loadTodos() async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -73,6 +76,7 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
     });
   }
 
+  // SAVE todos function
   Future<void> _saveTodos() async {
     final prefs = await SharedPreferences.getInstance();
 
