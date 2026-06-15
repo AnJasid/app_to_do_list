@@ -95,17 +95,23 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Widget homeContent = Center(
+      child: Text('No Todos found. Start adding some!'),
+    );
+
+    if (_registeredTodos.isNotEmpty) {
+      homeContent = TodoList(
+        todos: _registeredTodos,
+        onEditTodo: _openEditTodoOverlay,
+        onDeleteTodo: _deleteTodo,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('My Todos'),
       ),
-      body: Center(
-        child: TodoList(
-          todos: _registeredTodos,
-          onEditTodo: _openEditTodoOverlay,
-          onDeleteTodo: _deleteTodo,
-        ),
-      ),
+      body: homeContent,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _openAddTodoOverlay();
