@@ -39,6 +39,12 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
     setState(() {
       _registeredTodos.removeAt(index);
     });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: Duration(seconds: 3),
+        content: Text('Todo deleted.'),
+      ),
+    );
     _saveTodos();
   }
 
